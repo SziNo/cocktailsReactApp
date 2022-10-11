@@ -1,9 +1,15 @@
-import React, { useState, useContext, useEffect, useCallback } from 'react'
+import {
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+  createContext,
+} from 'react'
 
 const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
-const AppContext = React.createContext()
+const AppContext = createContext()
 
-const AppProvider = ({ children }) => {
+export const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('a')
   const [cocktails, setCocktails] = useState([])
@@ -55,8 +61,4 @@ const AppProvider = ({ children }) => {
   )
 }
 // make sure use
-export const useGlobalContext = () => {
-  return useContext(AppContext)
-}
-
-export { AppContext, AppProvider }
+export const useGlobalContext = () => useContext(AppContext)
